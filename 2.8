@@ -1,0 +1,27 @@
+/*
+Напишете функција која ќе врши форматирање на даден датум со помош на currying функционалноста во JavaScript.
+
+Пример како треба да изгледа функцијата:
+console.log(date(1)(12)(2020)) ---> 1.12.2020
+console.log(date(1,12)(2020)) ---> 1.12.2020
+console.log(date(1)(12, 2020)) ---> 1.12.2020
+console.log(date(1,12, 2020)) ---> 1.12.2020
+*/
+
+function curry(fn) {
+    return function curried(...args) {
+        if (args.length >= fn.length) {
+            return fn.apply(this, args);
+        } else {
+            return function(...args2) {
+                return curried.apply(this, args.concat(args2));
+            }
+        }
+    };
+}
+
+function formatDate(day, month, year) {
+    return `${day}.${month}.${year}`;
+}
+
+var date = curry(formatDate);
