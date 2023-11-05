@@ -1,0 +1,34 @@
+/* 
+Напишете JavaScript функциjа наречена difference коjа ´ке ги наjде уникатните елементи од 2 полиња.
+
+Пример како треба да изгледа функцијата:
+
+console.log(difference([1, 2, 3], [100, 2, 1, 10])) ----> [ 1, 2, 3, 10, 100] 
+*/
+
+function flatten(arr) {
+    let result = [];
+    arr.forEach((item) => {
+      if (Array.isArray(item)) {
+        // If the item is an array, recursively flatten it and then add the results to the 'result' array
+        result = result.concat(flatten(item));
+      } else {
+        // If the item is not an array, add it directly to the 'result' array
+        result.push(item);
+      }
+    });
+    return result;
+  }
+  
+  function difference(arr1, arr2) {
+    // First, flatten the input arrays to handle nested arrays to any depth
+    const flatArray1 = flatten(arr1);
+    const flatArray2 = flatten(arr2);
+  
+    // Next, create a set with all elements from both flattened arrays to remove duplicates
+    const uniqueSet = new Set([...flatArray1, ...flatArray2]);
+  
+    // Finally, convert the set back to an array and return it
+    return Array.from(uniqueSet);
+  }
+  
