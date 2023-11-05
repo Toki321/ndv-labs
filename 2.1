@@ -1,0 +1,24 @@
+/*
+Напишете функциjа коjа го враќа следниот фибоначиев броj за секоj повик:
+
+fib_next() ---> returns 1
+fib_next() ---> returns 2 
+fib_next() ---> returns 3
+fib_next() ---> returns 5
+fib_next() ---> returns 8
+For example:
+
+Test	
+console.log(fib_next(),fib_next(), fib_next())
+Result
+1 2 3
+*/
+
+let arr = [0, 1]; 
+
+var fib_next = () => {
+  let next = arr[0] + arr[1]; 
+  arr[0] = arr[1]; 
+  arr[1] = next; 
+  return next; 
+};
